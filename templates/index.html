@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="get" class="inline card"><input name="q" value="{{ q }}" placeholder="Search products" maxlength="100"><button>Search</button></form>
+{% if not products %}<p>No products found.</p>{% endif %}
+<div class="grid">
+{% for p in products %}
+  <div class="card">
+    <h3><a href="{{ url_for('product', pid=p.id) }}">{{ p.name }}</a></h3>
+    <p class="muted">{{ p.description }}</p>
+    <p class="price">{{ p.price|money }}</p>
+    <a class="btn" href="{{ url_for('product', pid=p.id) }}">View</a>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

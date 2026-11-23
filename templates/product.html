@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ p.name }}{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>{{ p.name }}</h2>
+  <p>{{ p.description }}</p>
+  <p class="price">{{ p.price|money }}</p>
+  <form method="post" action="{{ url_for('cart_add') }}">
+    <input type="hidden" name="productId" value="{{ p.id }}">
+    {% if not secure %}<input type="hidden" name="price" value="{{ p.price }}">{% endif %}
+    <label for="q">Quantity</label>
+    <input id="q" type="number" name="quantity" value="1" min="1" max="10" style="max-width:100px">
+    <p><button>Add to cart</button></p>
+  </form>
+</div>
+{% endblock %}

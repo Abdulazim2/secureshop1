@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<h2>Your cart</h2>
+{% if not lines %}<p>Your cart is empty. <a href="{{ url_for('index') }}">Browse products</a></p>
+{% else %}
+<div class="card table-wrap"><table>
+<tr><th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr>
+{% for l in lines %}
+<tr><td>{{ l.name }}</td><td>{{ l.price|money }}</td>
+<td><form method="post" action="{{ url_for('cart_update') }}">
+  <input type="hidden" name="productId" value="{{ l.id }}">
+  <input type="number" name="quantity" value="{{ l.qty }}" min="0" max="10"><button class="small">Update</button></form></td>
+<td>{{ l.subtotal|money }}</td>
+<td><form method="post" action="{{ url_for('cart_remove') }}"><input type="hidden" name="productId" value="{{ l.id }}"><button class="small danger">Remove</button></form></td></tr>
+{% endfor %}
+</table></div>
+<div class="card">
+  <form method="post" action="{{ url_for('cart_coupon') }}" class="inline">
+    <input name="code" placeholder="Coupon code" maxlength="20"><button>Apply</button></form>
+  {% if coupons %}<p class="muted">Applied: {{ coupons|join(', ') }}
+    <form method="post" action="{{ url_for('cart_coupons_clear') }}" style="display:inline"><button class="link">clear</button></form></p>{% endif %}
+  <p>Subtotal: {{ t.subtotal|money }}</p>
+  {% if t.discount %}<p>Discount ({{ t.pct }}%): -{{ t.discount|money }}</p>{% endif %}
+  <p class="price">Total: <span id="total" data-cents="{{ t.total }}">{{ t.total|money }}</span></p>
+  {% if user %}
+  <form method="post" action="{{ url_for('checkout') }}"><button>Pay with store credit ({{ user.credit|money }})</button></form>
+  {% else %}<p><a href="{{ url_for('login') }}">Log in</a> to check out.</p>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}My account{% endblock %}
+{% block content %}
+<div class="card">
+<h2>My account</h2>
+<p>Username: <strong>{{ user.username }}</strong> · Email: {{ user.email }} · Credit: {{ user.credit|money }}</p>
+<form method="post">
+  <label for="n">Display name</label><input id="n" name="display_name" value="{{ user.display_name }}" maxlength="60">
+  <label for="a">Address</label><textarea id="a" name="address" maxlength="200" rows="3">{{ user.address }}</textarea>
+  <p><button>Save</button></p>
+</form>
+</div>
+<h3>My orders</h3>
+{% if not orders %}<p>No orders yet.</p>{% else %}
+<div class="card table-wrap"><table>
+<tr><th>Date</th><th>Total</th><th>Status</th></tr>
+{% for o in orders %}<tr><td>{{ o.created }}</td><td>{{ o.total|money }}</td><td>{{ o.status }}</td></tr>{% endfor %}
+</table></div>{% endif %}
+{% endblock %}

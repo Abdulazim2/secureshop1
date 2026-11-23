@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Verification{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h2>Verification code</h2>
+<p class="muted">We sent a code to your email.</p>
+<form method="post" autocomplete="off">
+  <label for="c">Code</label><input id="c" name="mfa-code" required inputmode="numeric" maxlength="6">
+  <p><button>Verify</button></p>
+</form>
+</div>
+{% endblock %}

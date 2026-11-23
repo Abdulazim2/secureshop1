@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Mailbox{% endblock %}
+{% block content %}
+<h2>Simulated mailbox</h2>
+<p class="muted">Course environment only: stands in for a real email server.</p>
+{% for m in mails %}
+<div class="card mail" data-to="{{ m.to_addr }}">
+  <strong>{{ m.subject }}</strong><br><span class="muted">To: {{ m.to_addr }} · {{ m.created }}</span>
+  <p>{% for part in m.body.split(' ') %}{% if part.startswith('/confirm/') %}<a href="{{ part }}">{{ part }}</a>{% else %}{{ part }}{% endif %} {% endfor %}</p>
+</div>
+{% else %}<p>No mail.</p>{% endfor %}
+{% endblock %}

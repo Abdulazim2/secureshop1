@@ -1,0 +1,36 @@
+:root{--bg:#f6f7f9;--card:#fff;--text:#1d2433;--muted:#667085;--brand:#2459d3;--brand-d:#1a46a8;--ok:#13795b;--err:#b42318;--line:#e4e7ec}
+@media (prefers-color-scheme:dark){:root{--bg:#12161f;--card:#1b2130;--text:#e8ecf4;--muted:#9aa4b8;--brand:#6b95ff;--brand-d:#8caaff;--ok:#4ad1a2;--err:#ff8b80;--line:#2a3247}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:var(--brand)}
+header{background:var(--card);border-bottom:1px solid var(--line)}
+.bar{max-width:1000px;margin:auto;padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center}
+.logo{font-weight:700;font-size:1.2rem;text-decoration:none;color:var(--text)}
+nav{display:flex;flex-wrap:wrap;gap:.3rem 1rem;align-items:center;margin-left:auto}
+nav form{display:inline}
+main{max-width:1000px;margin:1.2rem auto;padding:0 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem;margin-bottom:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
+.price{font-weight:700}
+.muted{color:var(--muted);font-size:.9rem}
+input,textarea,select{width:100%;padding:.55rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font:inherit}
+label{display:block;margin:.6rem 0 .2rem;font-weight:600}
+button,.btn{background:var(--brand);color:#fff;border:0;border-radius:8px;padding:.55rem 1rem;font:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:var(--brand-d)}
+button.link{background:none;color:var(--brand);padding:0}
+button.danger{background:var(--err)}
+button.small{padding:.25rem .6rem;font-size:.85rem}
+.flash{padding:.6rem .9rem;border-radius:8px;margin-bottom:.8rem}
+.flash.ok{background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok)}
+.flash.error{background:color-mix(in srgb,var(--err) 15%,transparent);color:var(--err)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:.5rem;border-bottom:1px solid var(--line);vertical-align:middle}
+td form{display:inline-flex;gap:.3rem;align-items:center}
+td input{width:auto;max-width:110px}
+footer{max-width:1000px;margin:2rem auto;padding:0 1rem 2rem}
+.inline{display:flex;gap:.5rem}
+.inline input{flex:1}
+.badge{font-size:.75rem;padding:.1rem .5rem;border-radius:99px;background:var(--line)}
+.mail{word-break:break-all}
+.narrow{max-width:420px;margin:auto}

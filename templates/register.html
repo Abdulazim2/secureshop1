@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h2>Create account</h2>
+{% if not secure %}<p class="muted">SecureShop employees: please register with your company email address.</p>{% endif %}
+<form method="post">
+  <label for="u">Username</label><input id="u" name="username" required>
+  <label for="e">Email</label><input id="e" name="email" type="text" required>
+  <label for="p">Password</label><input id="p" name="password" type="password" required>
+  <p><button>Register</button></p>
+</form>
+<p class="muted">We will email you a confirmation link.</p>
+</div>
+{% endblock %}

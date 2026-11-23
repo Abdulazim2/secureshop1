@@ -1,0 +1,19 @@
+secure:
+python app.py
+
+
+naive:
+set SECURE_MODE=0
+python app.py
+
+Coupon: 
+SIGNUP30
+NEWCUST5
+
+alice	Alice#2026pass	
+admin	Admin#2026pass 
+
+
+python demo_t3.py
+python demo_t5_bruteforce.py
+http://127.0.0.1:5000/login2

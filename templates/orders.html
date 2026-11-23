@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+<h2>Order history</h2>
+{% if not orders %}<p>No orders yet.</p>{% else %}
+<div class="card table-wrap"><table>
+<tr><th>Date</th><th>Total</th><th>Status</th><th></th></tr>
+{% for o in orders %}
+<tr><td>{{ o.created }}</td><td>{{ o.total|money }}</td><td>{{ o.status }}</td>
+<td>{% if o.status == 'paid' %}<a href="{{ url_for('order_detail', public_id=o.public_id) }}">Details</a>{% endif %}</td></tr>
+{% endfor %}</table></div>{% endif %}
+{% endblock %}

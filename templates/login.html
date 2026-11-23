@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h2>Log in</h2>
+<form method="post" id="f" autocomplete="off">
+  <label for="u">Username</label><input id="u" name="username" required maxlength="64">
+  <label for="p">Password</label><input id="p" name="password" type="password" required maxlength="128">
+  <input type="hidden" name="rhythm" id="rhythm">
+  <input type="hidden" name="lat" id="lat"><input type="hidden" name="lon" id="lon">
+  <p><button>Log in</button></p>
+</form>
+<p class="muted">No account? <a href="{{ url_for('register') }}">Register</a></p>
+</div>
+<script>
+// [T6] record the time (ms) between key presses in the password box.
+// [T7] best-effort browser location for the admin policy.
+(function(){
+  var gaps=[], last=null, p=document.getElementById('p');
+  p.addEventListener('keydown', function(e){
+    if(e.key.length!==1) return;
+    var t=performance.now(); if(last!==null) gaps.push(Math.round(t-last)); last=t;
+  });
+  document.getElementById('f').addEventListener('submit', function(){
+    document.getElementById('rhythm').value=JSON.stringify(gaps);
+  });
+  if(navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos){
+    document.getElementById('lat').value=pos.coords.latitude;
+    document.getElementById('lon').value=pos.coords.longitude;
+  }, function(){});
+})();
+</script>
+{% endblock %}
